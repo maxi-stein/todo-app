@@ -5,37 +5,37 @@ import { Task } from "./components/Task"
 
 export const App = () => {
 
-  const [listadoTareas,setListadoTareas] = useState([])
-  const [pendientes,setPendientes] = useState(0)
+  const [taskList,setTaskList] = useState([])
+  const [pendingTaskList,setPendingTaskList] = useState(0)
 
   const handleCompleted = id => {
 
-    //encuentro el indice en el listado
-    const indice = listadoTareas.findIndex( tarea => tarea.id === id)
+    //finding the index por completed task
+    const index = taskList.findIndex( task => task.id === id)
 
-    //copio el listado
-    const listado = [...listadoTareas]
+    //coping the taskList to a temporary task list
+    const tempList = [...taskList]
 
-    //le cambio el valor a false y lo guardo
-    const tareaResuelta = listado[indice]
-    tareaResuelta.isPending = false
-    listado[indice] = tareaResuelta
+    //setting pending status to false and updating the temp task list
+    const taskDone = tempList[index]
+    taskDone.isPending = false
+    tempList[index] = taskDone
 
-    setListadoTareas(listado)
+    setTaskList(tempList)
 
-    const listadoPendientes = listadoTareas.filter( tarea => tarea.isPending === true)
-    setPendientes(listadoPendientes.length)
+    const updatedPendingTaskList = taskList.filter( task => task.isPending === true)
+    setPendingTaskList(updatedPendingTaskList.length)
 
   }
 
   //Cuando CreadorTareas agrega una tarea exitosamente, llama a esta funcion
-  function agregarTarea(tarea) {
+  function addTask(task) {
 
     //Agregamos la tarea al listado de tareas
-    setListadoTareas([...listadoTareas,tarea])
+    setTaskList([...taskList,task])
 
-    //Aumento en 1 la cantidad de pendientes
-    setPendientes(pendientes+1)
+    //Aumento en 1 la cantidad de pendingTaskList
+    setPendingTaskList(pendingTaskList+1)
 
   }
 
@@ -47,19 +47,19 @@ export const App = () => {
       <main className="sm:mx-24 md:mx-48 lg:mx-64 xl:mx-80">
 
         <TaskCreator 
-          addTask={agregarTarea}/>
+          addTask={addTask}/>
 
         <div className="text-center my-5 bg-white rounded-lg px-2 py-2">
-          <h2 className="bg-blue-900 font-bold text-white rounded-t-md py-1">Listado de Tareas (Pendientes: {pendientes})</h2>
+          <h2 className="bg-blue-900 font-bold text-white rounded-t-md py-1">Listado de Tareas (Pendientes: {pendingTaskList})</h2>
 
-          {listadoTareas.length==0 && <div className="italic text-gray-400 py-5">¡Agregá tu primer tarea!</div>}
+          {taskList.length==0 && <div className="italic text-gray-400 py-5">¡Agregá tu primer tarea!</div>}
 
-          {listadoTareas.map( tarea => {
+          {taskList.map( task => {
             return ( <Task
-                      task={tarea.task}
-                      todoTask={tarea.isPending}
-                      key={tarea.id}
-                      handleCompleted={() => handleCompleted(tarea.id)} />
+                      task={task.task}
+                      todoTask={task.isPending}
+                      key={task.id}
+                      handleCompleted={() => handleCompleted(task.id)} />
                       )
           })}
 
