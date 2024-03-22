@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-function CreadorTareas ({setListadoTareas,setPendientes}) {
+function CreadorTareas ({agregarTarea,setPendientes}) {
 
     const [tarea,setTarea] = useState('')
     const [error,setError] = useState(false)
@@ -30,7 +30,7 @@ function CreadorTareas ({setListadoTareas,setPendientes}) {
         }
 
         //Agrego el objeto al state listado de tareas
-        setListadoTareas(prevListado => [...prevListado,objetoTarea])
+        agregarTarea(objetoTarea)
         setPendientes(prevPend => prevPend+1)
 
         //reinicio el form

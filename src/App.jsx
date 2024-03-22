@@ -32,6 +32,9 @@ function App() {
 
   }
 
+  function agregarTarea(tarea) {
+    setListadoTareas([...listadoTareas,tarea])
+  }
   return (
     <>
 
@@ -40,7 +43,7 @@ function App() {
       <main className="sm:mx-24 md:mx-48 lg:mx-64 xl:mx-80">
 
         <CreadorTareas 
-          setListadoTareas={setListadoTareas}
+          agregarTarea={agregarTarea}
           setPendientes={setPendientes}/>
 
         <div className="text-center my-5 bg-white rounded-lg px-2 py-1">
