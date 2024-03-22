@@ -59,7 +59,7 @@ export const App = () => {
                       tarea={tarea.tarea}
                       pendiente={tarea.pendiente}
                       key={tarea.id}
-                      onClick={() => handleCompletada(tarea.id)} />
+                      handleCompletada={() => handleCompletada(tarea.id)} />
                       )
           })}
 
