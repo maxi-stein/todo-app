@@ -1,14 +1,14 @@
 import { useState } from "react"
 import { Header } from "./components/Header"
 import { CreadorTareas } from "./components/CreadorTareas"
-import { Tarea } from "./components/Tarea"
+import { Task } from "./components/Task"
 
 export const App = () => {
 
   const [listadoTareas,setListadoTareas] = useState([])
   const [pendientes,setPendientes] = useState(0)
 
-  const handleCompletada = id => {
+  const handleCompleted = id => {
 
     //encuentro el indice en el listado
     const indice = listadoTareas.findIndex( tarea => tarea.id === id)
@@ -55,11 +55,11 @@ export const App = () => {
           {listadoTareas.length==0 && <div className="italic text-gray-400 py-5">¡Agregá tu primer tarea!</div>}
 
           {listadoTareas.map( tarea => {
-            return ( <Tarea
-                      tarea={tarea.tarea}
-                      pendiente={tarea.pendiente}
+            return ( <Task
+                      task={tarea.tarea}
+                      todoTask={tarea.pendiente}
                       key={tarea.id}
-                      handleCompletada={() => handleCompletada(tarea.id)} />
+                      handleCompleted={() => handleCompleted(tarea.id)} />
                       )
           })}
 
