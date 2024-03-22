@@ -31,7 +31,6 @@ function CreadorTareas ({agregarTarea,setPendientes}) {
 
         //Agrego el objeto al state listado de tareas
         agregarTarea(objetoTarea)
-        setPendientes(prevPend => prevPend+1)
 
         //reinicio el form
         setTarea('')
