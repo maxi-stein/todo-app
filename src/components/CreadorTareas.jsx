@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-function CreadorTareas ({setListadoTareas}) {
+function CreadorTareas ({setListadoTareas,setPendientes}) {
 
     const [tarea,setTarea] = useState('')
     const [error,setError] = useState(false)
@@ -24,12 +24,14 @@ function CreadorTareas ({setListadoTareas}) {
 
         //creo un objeto el cual contiene la tarea y un id generado en el momento
         const objetoTarea = {
+            id: generarId(),
             tarea: tarea,
-            id: generarId()
+            pendiente: true
         }
 
         //Agrego el objeto al state listado de tareas
         setListadoTareas(prevListado => [...prevListado,objetoTarea])
+        setPendientes(prevPend => prevPend+1)
 
         //reinicio el form
         setTarea('')
@@ -51,7 +53,7 @@ function CreadorTareas ({setListadoTareas}) {
             <div className="text-center my-5 bg-white rounded-lg">
 
                 <form onSubmit={handleSubmit} className="flex flex-col p-2">
-                    
+
                     <label className="bg-blue-900 font-bold text-white rounded-t-md py-1">Crear una tarea</label>
 
                     <input
