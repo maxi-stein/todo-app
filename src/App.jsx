@@ -1,6 +1,6 @@
 import { useState } from "react"
 import { Header } from "./components/Header"
-import { CreadorTareas } from "./components/CreadorTareas"
+import { TaskCreator } from "./components/TaskCreator"
 import { Task } from "./components/Task"
 
 export const App = () => {
@@ -18,12 +18,12 @@ export const App = () => {
 
     //le cambio el valor a false y lo guardo
     const tareaResuelta = listado[indice]
-    tareaResuelta.pendiente = false
+    tareaResuelta.isPending = false
     listado[indice] = tareaResuelta
 
     setListadoTareas(listado)
 
-    const listadoPendientes = listadoTareas.filter( tarea => tarea.pendiente === true)
+    const listadoPendientes = listadoTareas.filter( tarea => tarea.isPending === true)
     setPendientes(listadoPendientes.length)
 
   }
@@ -46,8 +46,8 @@ export const App = () => {
 
       <main className="sm:mx-24 md:mx-48 lg:mx-64 xl:mx-80">
 
-        <CreadorTareas 
-          agregarTarea={agregarTarea}/>
+        <TaskCreator 
+          addTask={agregarTarea}/>
 
         <div className="text-center my-5 bg-white rounded-lg px-2 py-2">
           <h2 className="bg-blue-900 font-bold text-white rounded-t-md py-1">Listado de Tareas (Pendientes: {pendientes})</h2>
@@ -56,8 +56,8 @@ export const App = () => {
 
           {listadoTareas.map( tarea => {
             return ( <Task
-                      task={tarea.tarea}
-                      todoTask={tarea.pendiente}
+                      task={tarea.task}
+                      todoTask={tarea.isPending}
                       key={tarea.id}
                       handleCompleted={() => handleCompleted(tarea.id)} />
                       )

@@ -1,18 +1,18 @@
 import { useState } from "react"
 
-export const CreadorTareas = ({agregarTarea}) => {
+export const TaskCreator = ({addTask}) => {
 
-    const [tarea,setTarea] = useState('')
+    const [task,setTask] = useState('')
     const [error,setError] = useState(false)
 
     const handleSubmit = e => {
         e.preventDefault()
 
-        //Si se ingresa una tarea vacía
-        if(tarea == ''){
+        //If an empty task is submmited
+        if(task == ''){
             setError(true)
 
-            //al setear error a false luego de 1.5 seg, permite mostrar el cartel de error por ese tiempo unicamente 
+            //Show on the UI a simple Error display for 1.5 secs.
             setTimeout(() => {
                 setError(false)
             }, 1500);
@@ -20,26 +20,26 @@ export const CreadorTareas = ({agregarTarea}) => {
             return
         }
 
-        //en caso que no este vacia la tarea
+        //If the task is not empty
 
-        //creo un objeto el cual contiene la tarea y un id generado en el momento
-        const objetoTarea = {
-            id: generarId(),
-            tarea: tarea,
-            pendiente: true
+        //I create an Object that contains the task itself, a generated id and 
+        const taskObject = {
+            id: createId(),
+            task: task,
+            isPending: true
         }
 
-        //Agrego el objeto al state listado de tareas
-        agregarTarea(objetoTarea)
+        //Add the taskObject to the task list
+        addTask(taskObject)
 
-        //reinicio el form
-        setTarea('')
+        //form reset
+        setTask('')
     }
 
-    const generarId = () => {
+    const createId = () => {
         const random = Math.random().toString(36).slice(2,);
-        const fecha = Date.now().toString(36)
-        return random + fecha
+        const date = Date.now().toString(36)
+        return random + date
     }
 
     return (
@@ -58,8 +58,8 @@ export const CreadorTareas = ({agregarTarea}) => {
                     <input
                         placeholder="Ingrese la tarea acá"
                         className="px-1 pt-2 resize-none focus:outline-none border-b-blue-900 border-solid"
-                        value={tarea}
-                        onChange={e => setTarea(e.target.value)}>
+                        value={task}
+                        onChange={e => setTask(e.target.value)}>
                     </input>
 
                     <button type="submit" className="uppercase font-bold text-white bg-green-600 mt-6 mb-3 py-1 mx-40 rounded-md hover:bg-green-700">Agregar</button>
