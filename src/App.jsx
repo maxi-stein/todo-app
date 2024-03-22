@@ -55,7 +55,7 @@ function App() {
         <CreadorTareas 
           agregarTarea={agregarTarea}/>
 
-        <div className="text-center my-5 bg-white rounded-lg px-2 py-1">
+        <div className="text-center my-5 bg-white rounded-lg px-2 py-2">
           <h2 className="bg-blue-900 font-bold text-white rounded-t-md py-1">Listado de Tareas (Pendientes: {pendientes})</h2>
 
           {listadoTareas.length==0 && <div className="italic text-gray-400 py-5">¡Agregá tu primer tarea!</div>}
