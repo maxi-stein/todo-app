@@ -1,16 +1,12 @@
-import { useEffect, useState } from "react"
-import Header from "./components/Header"
-import CreadorTareas from "./components/CreadorTareas"
-import Tarea from "./components/Tarea"
+import { useState } from "react"
+import { Header } from "./components/Header"
+import { CreadorTareas } from "./components/CreadorTareas"
+import { Tarea } from "./components/Tarea"
 
-function App() {
+export const App = () => {
 
   const [listadoTareas,setListadoTareas] = useState([])
   const [pendientes,setPendientes] = useState(0)
-
-  useEffect( () => {
-
-  }, [pendientes])
 
   const handleCompletada = id => {
 
@@ -42,8 +38,6 @@ function App() {
     setPendientes(pendientes+1)
 
   }
-
-
 
   return (
     <>
@@ -78,4 +72,3 @@ function App() {
   
 }
 
-export default App

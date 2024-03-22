@@ -1,6 +1,6 @@
 import { useState } from "react"
 
-function CreadorTareas ({agregarTarea,setPendientes}) {
+export const CreadorTareas = ({agregarTarea}) => {
 
     const [tarea,setTarea] = useState('')
     const [error,setError] = useState(false)
@@ -45,7 +45,7 @@ function CreadorTareas ({agregarTarea,setPendientes}) {
     return (
 
         <>
-            {error === true && <div className="bg-red-800 text-white text-center mt-6 py-2 uppercase font-bold rounded-md">
+            {error && <div className="bg-red-800 text-white text-center mt-6 py-2 uppercase font-bold rounded-md">
                 <p >¡La tarea no puede estar vacía!</p>
             </div> }
 
@@ -70,5 +70,3 @@ function CreadorTareas ({agregarTarea,setPendientes}) {
         </>
     )
 }
-
-export default CreadorTareas
