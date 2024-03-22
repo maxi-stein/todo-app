@@ -32,9 +32,19 @@ function App() {
 
   }
 
+  //Cuando CreadorTareas agrega una tarea exitosamente, llama a esta funcion
   function agregarTarea(tarea) {
+
+    //Agregamos la tarea al listado de tareas
     setListadoTareas([...listadoTareas,tarea])
+
+    //Aumento en 1 la cantidad de pendientes
+    setPendientes(pendientes+1)
+
   }
+
+
+
   return (
     <>
 
@@ -43,8 +53,7 @@ function App() {
       <main className="sm:mx-24 md:mx-48 lg:mx-64 xl:mx-80">
 
         <CreadorTareas 
-          agregarTarea={agregarTarea}
-          setPendientes={setPendientes}/>
+          agregarTarea={agregarTarea}/>
 
         <div className="text-center my-5 bg-white rounded-lg px-2 py-1">
           <h2 className="bg-blue-900 font-bold text-white rounded-t-md py-1">Listado de Tareas (Pendientes: {pendientes})</h2>
