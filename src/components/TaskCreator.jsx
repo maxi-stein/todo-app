@@ -1,4 +1,5 @@
 import { useState } from "react"
+import { createId } from "../utils/utils"
 
 export const TaskCreator = ({addTask}) => {
 
@@ -34,12 +35,6 @@ export const TaskCreator = ({addTask}) => {
 
         //form reset
         setTask('')
-    }
-
-    const createId = () => {
-        const random = Math.random().toString(36).slice(2,);
-        const date = Date.now().toString(36)
-        return random + date
     }
 
     return (
