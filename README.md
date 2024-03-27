@@ -15,7 +15,7 @@ $ npm install
 $ npm dev run
 ```
 
-Finally, you can access this API through the following URL:
+Finally, you can access this APP through the following URL:
 
 ```bash
 http://localhost:5173
